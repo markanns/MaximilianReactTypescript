@@ -64,3 +64,22 @@ interface AppUser {
 }
 
 interface AppAdmin extends Admin, AppUser {}
+
+type DataStorage<T> = {
+  storage: T[];
+  add: (data: T) => void;
+};
+
+const textStorage: DataStorage<string> = {
+  storage: ["Hi", "Bye"],
+  add: function (data: string) {
+    this.storage.push(data);
+  },
+};
+
+const userStorage: DataStorage<AppUser> = {
+  storage: [],
+  add: function (user: AppUser) {
+    this.storage.push(user);
+  },
+};
