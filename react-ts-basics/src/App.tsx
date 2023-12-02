@@ -13,12 +13,12 @@ export type Goal = {
 export default function App() {
   const [goals, setGoals] = useState<Goal[]>([]);
 
-  function handleAddGoal() {
+  function handleAddGoal(goal: string, summary: string) {
     setGoals((prevGoals) => {
       const newGoal: Goal = {
         id: Math.random(),
-        text: "some text",
-        title: "some title",
+        text: summary,
+        title: goal,
       };
       return [...prevGoals, newGoal];
     });
@@ -32,7 +32,7 @@ export default function App() {
       <Header image={{ src: goalImg, alt: "a goal image" }}>
         <h1>Your Goals</h1>
       </Header>
-      <NewGoal />
+      <NewGoal onAddGoal={handleAddGoal} />
       <CourseGoalList goals={goals} onDeleteGoal={handelDeleteGoal} />
     </main>
   );
